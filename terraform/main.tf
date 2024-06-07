@@ -1,6 +1,11 @@
-provider aws {
-    region="us-east-1"
-    }
+terraform {
+  backend "s3" {}
+}
+resource "aws_ssm_parameter" "foo" {
+  name  = "foo"
+  type  = "String"
+  value = "barr"
+}
 
 resource "aws_instance" "vs-test" {
     ami = "ami-07caf09b362be10b8"
