@@ -57,12 +57,6 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
 
-      # More complex example
-      - name: tflint
-        uses: reviewdog/action-tflint@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color
@@ -93,8 +87,8 @@ jobs:
       #- run: echo ${{ steps.tflint.outputs.stdout }}
       #- run: echo ${{ steps.tflint.outputs.stderr }}
       #- run: echo ${{ steps.tflint.outputs.exitcode }}
-      - name: Print OUtput
-        run: ${{ steps.tflint.outputs.stdout }}
+      - name: Print Otput
+        run: echo ${{ steps.tflint.outputs.stdout }}
                      
            
         
