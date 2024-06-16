@@ -1,6 +1,15 @@
 terraform {
-  backend "s3" {}
+  required_version = "~> 1.8"
+  required_providers {
+       aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.45"
+    }
+  }
+ backend "s3" {}
 }
+
+
 resource "aws_ssm_parameter" "foo" {
   name  = "foo"
   type  = "String"
