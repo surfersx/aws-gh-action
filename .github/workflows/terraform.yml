@@ -56,7 +56,7 @@ jobs:
         id: plan
         run: terraform plan -no-color
         if: github.event_name == 'pull_request'
-        continue-on-error: true
+        #continue-on-error: true
         
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
