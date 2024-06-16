@@ -65,6 +65,8 @@ jobs:
       - name: Post TFLint Comment
         if: ${{ always() && (steps.tflint.outcome == 'success' || steps.tflint.outcome == 'failure') }}
         uses: GetTerminus/terraform-pr-commenter@dpr-update-commenter
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           commenter_type: tflint
           commenter_input: ${{ format('{0}{1}', steps.tflint.outputs.stdout, steps.tflint.outputs.stderr) }}
