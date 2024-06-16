@@ -75,6 +75,17 @@ jobs:
         if: success() || failure()
         with:
           sarif_file: results.sarif
+      - uses: terraform-linters/setup-tflint@v4 
+        with:
+          tflint_wrapper: true
+          
+      - id: tflint
+        run: tflint -f compact
+
+      - run: echo ${{ steps.tflint.outputs.stdout }}
+      - run: echo ${{ steps.tflint.outputs.stderr }}
+      - run: echo ${{ steps.tflint.outputs.exitcode }}
+          
         
       - uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
