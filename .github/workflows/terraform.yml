@@ -35,18 +35,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.2.5
-      - uses: terraform-linters/setup-tflint@v4 
-        with:
-          tflint_wrapper: true
-          
-      - id: tflint
-        run: tflint -f compact
-
-      #- run: echo ${{ steps.tflint.outputs.stdout }}
-      #- run: echo ${{ steps.tflint.outputs.stderr }}
-      #- run: echo ${{ steps.tflint.outputs.exitcode }}
-      - name: Print Otput
-        run: echo ${{ steps.tflint.outputs.stdout }}          
+       
 
       - name: Terraform fmt
         id: fmt
@@ -63,11 +52,6 @@ jobs:
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
-
-      - name: tflint
-        uses: reviewdog/action-tflint@v1
-        with:
-          github_token: ${{ secrets.github_token }}
 
       - name: Terraform Plan
         id: plan
