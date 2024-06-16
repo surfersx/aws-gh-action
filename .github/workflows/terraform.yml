@@ -83,7 +83,13 @@ jobs:
       #- run: echo ${{ steps.tflint.outputs.stderr }}
       #- run: echo ${{ steps.tflint.outputs.exitcode }}
       - name: Print OUtput
-        run: ls -l
+        run: |
+           ls -l
+           echo ${{ steps.tflint.outputs.stdout }}
+           echo ${{ steps.tflint.outputs.exitcode }}
+           echo ${{ steps.tflint.outputs.stderr }}
+           
+          
           
         
       - uses: actions/github-script@v6
