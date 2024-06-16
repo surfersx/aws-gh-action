@@ -55,7 +55,22 @@ jobs:
         run: terraform plan -no-color
         if: github.event_name == 'pull_request'
         continue-on-error: true
-
+        
+      - name: Checkov GitHub Action
+        uses: bridgecrewio/checkov-action@v12
+        with:
+          # This will add both a CLI output to the console and create a results.sarif file
+          output_format: cli,sarif
+          output_file_path: console,results.sarif
+        continue-on-error: true
+        
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2       
+        
+        if: success() || failure()
+        with:
+          sarif_file: results.sarif
+        
       - uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
         env:
