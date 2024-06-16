@@ -79,9 +79,11 @@ jobs:
       - id: tflint
         run: tflint -f compact
 
-      - run: echo ${{ steps.tflint.outputs.stdout }}
+      #- run: echo ${{ steps.tflint.outputs.stdout }}
       #- run: echo ${{ steps.tflint.outputs.stderr }}
       #- run: echo ${{ steps.tflint.outputs.exitcode }}
+      - name: Print OUtput
+        shell: echo ${{ steps.tflint.outputs.stdout }}
           
         
       - uses: actions/github-script@v6
