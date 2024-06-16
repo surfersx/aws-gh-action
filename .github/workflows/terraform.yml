@@ -94,7 +94,7 @@ jobs:
       #- run: echo ${{ steps.tflint.outputs.stderr }}
       #- run: echo ${{ steps.tflint.outputs.exitcode }}
       - name: Print OUtput
-        run: ${{ steps.tflint.outputs }}
+        run: ${{ steps.tflint.outputs.stdout }}
                      
            
         
