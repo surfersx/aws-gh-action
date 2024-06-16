@@ -85,12 +85,9 @@ jobs:
       - name: Print OUtput
         run: |
            ls -l
-           echo ${{ steps.tflint.outputs.stdout }}
-           echo ${{ steps.tflint.outputs.exitcode }}
-           echo ${{ steps.tflint.outputs.stderr }}
-           
-          
-          
+           echo ${{ steps.tflint.outputs }}
+                        
+             
         
       - uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
