@@ -24,7 +24,7 @@ resource "aws_instance" "vs-test" {
     monitoring = "true"
     ebs_optimized = "true"
     tags = {
-      "Name" = "VS-instance"
+      "Name" = "VSS-instance"
     }
   
 }
