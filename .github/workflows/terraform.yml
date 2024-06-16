@@ -35,6 +35,18 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.2.5
+      - uses: terraform-linters/setup-tflint@v4 
+        with:
+          tflint_wrapper: true
+          
+      - id: tflint
+        run: tflint -f compact
+
+      #- run: echo ${{ steps.tflint.outputs.stdout }}
+      #- run: echo ${{ steps.tflint.outputs.stderr }}
+      #- run: echo ${{ steps.tflint.outputs.exitcode }}
+      - name: Print Otput
+        run: echo ${{ steps.tflint.outputs.stdout }}          
 
       - name: Terraform fmt
         id: fmt
@@ -77,19 +89,7 @@ jobs:
         if: success() || failure()
         with:
           sarif_file: results.sarif
-      - uses: terraform-linters/setup-tflint@v4 
-        with:
-          tflint_wrapper: true
-          
-      - id: tflint
-        run: tflint -f compact
-
-      #- run: echo ${{ steps.tflint.outputs.stdout }}
-      #- run: echo ${{ steps.tflint.outputs.stderr }}
-      #- run: echo ${{ steps.tflint.outputs.exitcode }}
-      - name: Print Otput
-        run: echo ${{ steps.tflint.outputs.stdout }}
-                     
+                   
            
         
       - uses: actions/github-script@v6
