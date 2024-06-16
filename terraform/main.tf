@@ -21,8 +21,8 @@ resource "aws_instance" "vs-test" {
     instance_type = "t2.micro"
     subnet_id = "subnet-0d0e3828e26eb661c"
     availability_zone = "us-east-1d"
-    monitoring = "true"
-    ebs_optimized = "true"
+    monitoring = true
+    ebs_optimized = true
     tags = {
       "Name" = "VS-instance"
     }
