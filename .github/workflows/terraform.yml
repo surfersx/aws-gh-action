@@ -52,6 +52,17 @@ jobs:
         id: validate
         run: terraform validate -no-color
 
+      - name: tflint
+        uses: reviewdog/action-tflint@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+
+      # More complex example
+      - name: tflint
+        uses: reviewdog/action-tflint@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color
