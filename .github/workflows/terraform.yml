@@ -85,7 +85,7 @@ jobs:
       - name: Print OUtput
         run: |
            ls -l
-           echo ${{ steps.tflint.outputs }}
+           echo ${{ steps.tflint.outputs.outcome }}
                         
              
         
