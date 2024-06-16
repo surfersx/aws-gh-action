@@ -13,7 +13,7 @@ resource "aws_instance" "vs-test" {
     subnet_id = "subnet-0d0e3828e26eb661c"
     availability_zone = "us-east-1d"
     tags = {
-      "Name" = "VS-instance"
+      "Name" = "VSS-instance"
     }
   
 }
