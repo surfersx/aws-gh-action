@@ -53,23 +53,16 @@ jobs:
         id: validate
         run: terraform validate -no-color
         
-      - name: TFLint - Setup
-        id: tflint
-        uses: terraform-linters/setup-tflint@v3
+      - uses: terraform-linters/setup-tflint@v4
         with:
-          tflint_wrapper_enabled: true
-      - name: TFLint - Run
-        run: |
-          tflint --version
-          tflint --init
-          tflint
-      - name: Post TFLint Comment
-        if: ${{ always() && (steps.tflint.outcome == 'success' || steps.tflint.outcome == 'failure') }}
-        uses: GetTerminus/terraform-pr-commenter@dpr-update-commenter
-        with:
-          commenter_type: tflint
-          commenter_input: ${{ format('{0}{1}', steps.tflint.outputs.stdout, steps.tflint.outputs.stderr) }}
-          commenter_exitcode: ${{ steps.tflint.outputs.exitcode }}        
+          tflint_wrapper: true
+
+      - id: tflint
+        run: tflint -f compact
+
+      - run: echo ${{ steps.tflint.outputs.stdout }}
+      - run: echo ${{ steps.tflint.outputs.stderr }}
+      - run: echo ${{ steps.tflint.outputs.exitcode }}       
 
       - name: Terraform Plan
         id: plan
