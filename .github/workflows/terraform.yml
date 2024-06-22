@@ -68,8 +68,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const output = `#### Terraform Lint 📖\`${{ steps.tflint.outcome }}\`
           
-            #### Terraform Lint 📖\`${{ steps.tflint.outcome }}\`
+            
 
             <details><summary>TFLint Summary</summary>
 
