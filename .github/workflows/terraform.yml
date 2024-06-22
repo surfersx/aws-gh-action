@@ -68,13 +68,24 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const output = `#### Terraform Lint 📖\`${{ steps.tflint.outcome }}\`
+          
+            
 
+            <details><summary>TFLint Summary</summary>
 
+            \`\`\`\n
+            ${process.env.PLAN}
+            \`\`\`
+
+            </details>
+            *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+            
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: process.env.PLAN
+              body: output
             })
 
       - run: echo ${{ steps.tflint.outputs.stdout }}
@@ -85,7 +96,7 @@ jobs:
         id: plan
         run: terraform plan -no-color
         if: github.event_name == 'pull_request'
-        #continue-on-error: true
+        
         
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
