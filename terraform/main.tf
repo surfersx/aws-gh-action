@@ -23,7 +23,7 @@ resource "aws_instance" "vs-test" {
     availability_zone = "us-east-1d"
     monitoring = "true"
         tags = {
-      "Name" = "VS-instance"
+      "Name" = "VSS-instance"
     }
   
 }
